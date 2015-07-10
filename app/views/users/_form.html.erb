@@ -1,4 +1,6 @@
-<h1 class="text-center" style="font-weight: normal">Register</h1>
+<% action_name == 'edit' ? is_disabled = true : is_disabled = false %>
+
+<h1 class="text-center" style="font-weight: normal"><%= is_disabled ? "Edit" : "Register" %></h1>
 <hr/>
 
 <div class="row">
@@ -12,7 +14,7 @@
           <%= f.text_field :name, class: "form-control custom-form-control" %><br/>
 
           <%= f.label :email %>
-          <%= f.text_field :email, class: "form-control custom-form-control", disabled: true %><br/>
+          <%= f.text_field :email, class: "form-control custom-form-control", disabled: is_disabled %><br/>
 
           <%= f.label :password %>
           <%= f.password_field :password, class: "form-control custom-form-control" %></br>

@@ -1,0 +1,65 @@
+<h1 class="text-center" style="font-weight: normal">Register</h1>
+<hr/>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="well" id="about-well">
+
+      <%= form_for @event do |f| %>
+          <%= render 'shared/error_messages', object: f.object %>
+
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control custom-form-control" %><br/>
+
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control custom-form-control", size: "30x5" %><br/>
+
+          <%= f.label :location %>
+          <%= f.text_field :location, class: "form-control custom-form-control" %></br>
+
+
+          <div class="row">
+
+            <div class="col-sm-6">
+              <%= f.label :event_date %>
+              <div class="input-group">
+
+                <%= f.text_field :event_date, class: "form-control custom-form-control datepicker" %>
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <%= f.label :event_time %>
+              <div class="input-group">
+
+              <%= f.text_field :event_time, class: "form-control custom-form-control timepicker" %> <br/>
+              <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+              </div>
+
+            </div>
+          </div>
+
+          <br/>
+
+
+
+
+          <%= f.submit @event.new_record? ? "Create" : "Edit", class: "btn btn-block purple-button" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true
+        });
+
+        $('.timepicker').timepicker();
+
+
+    });
+</script>
+

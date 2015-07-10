@@ -12,5 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker
  *= require font-awesome
+ *= require jquery.timepicker.css
  */

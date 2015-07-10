@@ -9,6 +9,8 @@ gem 'bootstrap-sass'
 gem 'will_paginate'
 gem "font-awesome-rails"
 gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'jquery-timepicker-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
