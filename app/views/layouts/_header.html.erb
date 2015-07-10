@@ -15,19 +15,37 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
           <%= link_to root_url do %>
-            <i class="fa fa-home"></i>
+            <i class="glyphicon glyphicon-home"></i>
               Home
           <% end %>
         </li>
         <li>
           <%= link_to about_path do %>
-            <i class="fa fa-info"></i>
+            <i class="glyphicon glyphicon-info-sign"></i>
               About
           <% end %>
         </li>
+
+        <% if !logged_in? %>
         <li>
-          <a href="#contact">Contact</a>
+          <%= link_to login_path do %>
+            <i class="glyphicon glyphicon-log-in"></i>
+              Log In
+          <% end %>
         </li>
+
+            <% else %>
+
+            <li>
+              <%= link_to logout_path, method: :delete do %>
+                  <i class="glyphicon glyphicon-log-out"></i>
+                  Log Out
+              <% end %>
+            </li>
+
+            <% end %>
+
+
       </ul>
     </div>
     <!-- /.navbar-collapse -->
