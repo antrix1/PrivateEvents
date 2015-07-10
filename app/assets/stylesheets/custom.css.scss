@@ -46,6 +46,17 @@ h6 {
   background-size: cover;
 }
 
+
+.intro-header2 {
+  padding-top: 100px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 20px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(intro-bg.jpg) no-repeat center center;
+  background-size: cover;
+  height: 100%;
+}
+
 .intro-message {
   position: relative;
   padding-top: 20%;
@@ -192,6 +203,9 @@ p.copyright {
 #about-well{
   background-color: #EFEFEF;
   border: 0px;
+  margin-bottom: 200px;
+  position: relative;
+  padding-top: -200px;
   a{
     color: black;
     border-bottom: 2px solid #39C;

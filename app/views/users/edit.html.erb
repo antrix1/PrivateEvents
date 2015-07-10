@@ -1,0 +1,10 @@
+<%= render 'form' %>
+
+
+
+
+  <div class="col-md-4 col-md-offset-4" style="margin-top: -150px;">
+    <h1 class="text-center">Delete your account</h1>
+    <div class="intro-divider"></div><br/>
+    <%= link_to "Cancel account", destroy_account_path, method: :delete, class: 'btn btn-danger btn-block', data: {confirm: "Are you sure?"} %>
+  </div>

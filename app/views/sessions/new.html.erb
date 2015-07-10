@@ -1,17 +1,19 @@
-<h1 class="text-center" style="font-weight: normal">Log In</h1>
-<hr/>
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="well" id="about-well">
-      <%= form_for(:session, url: login_path) do |f| %>
-          <%= f.label :email %>
-          <%= f.text_field :email, class: "form-control custom-form-control" %><br/>
+<div class="intro-header2">
+  <h1 class="text-center" style="font-weight: normal">Log In</h1>
+  <hr style="width:30%;"/>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="well" id="about-well">
+        <%= form_for(:session, url: login_path) do |f| %>
+            <%= f.label :email, style: "color:black;" %>
+            <%= f.text_field :email, class: "form-control custom-form-control" %><br/>
 
-          <%= f.label :password %>
-          <%= f.password_field :password, class: "form-control custom-form-control" %><br/>
+            <%= f.label :password, style: "color:black;" %>
+            <%= f.password_field :password, class: "form-control custom-form-control" %><br/>
 
-          <%= f.submit "Log In", class: "btn btn-block purple-button" %>
-      <% end %>
+            <%= f.submit "Log In", class: "btn btn-block purple-button" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

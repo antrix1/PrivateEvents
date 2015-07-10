@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :edit_own_profile, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -17,12 +18,30 @@ class UsersController < ApplicationController
 
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    if @user.save
+      flash[:success] = "Profile updated"
+      redirect_to root_url
+    else
+      flash.now[:danger] = "Something went wrong"
+      render :edit
+    end
   end
 
   def destroy
+    if current_user.destroy
+      log_out
+      flash[:success] = "Account deleted."
+      redirect_to root_url
+    else
+      flash[:danger] = "Something went wrong"
+      render :edit
+    end
   end
 
 
@@ -31,4 +50,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def edit_own_profile
+    redirect_to root_url and flash[:danger] = "Access denied" if current_user.id.to_s != params[:id].to_s
+  end
+
+  def create_user_instance
+    @user = User.find(params[:id])
+  end
+
 end

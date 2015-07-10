@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  before_filter :login_filter, only: [:new, :create]
-  before_filter :logout_filter, only: :destroy
+  before_action :login_filter, only: [:new, :create]
+  before_action :logout_filter, only: :destroy
 
   def new
   end
@@ -18,12 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if log_out
-      flash[:success] = "You have logged out"
-      redirect_to root_url
-    else
-      flash[:danger] = "Something went wrong"
-    end
+    log_out if logged_in?
+    redirect_to root_url
   end
 
   private
