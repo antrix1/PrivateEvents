@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :invitations, foreign_key: :attendee_id
   has_many :attended_events, through: :invitations, source: :event
 
-###########################################################3
+###########################################################
 
   before_save {self.email.downcase!}
   validates :name, presence: true

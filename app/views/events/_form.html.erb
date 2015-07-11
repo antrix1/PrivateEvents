@@ -1,4 +1,4 @@
-<h1 class="text-center" style="font-weight: normal">Register</h1>
+<h1 class="text-center" style="font-weight: normal">Create new Event</h1>
 <hr/>
 
 <div class="row">
@@ -57,7 +57,10 @@
             autoclose: true
         });
 
-        $('.timepicker').timepicker();
+        $('.timepicker').timepicker({
+            'timeFormat':'H:i',
+            'scrollDefault': 'now'
+        });
 
 
     });
