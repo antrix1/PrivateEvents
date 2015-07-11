@@ -50,8 +50,8 @@ h6 {
 .intro-header2 {
   padding-top: 100px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
   padding-bottom: 20px;
-  text-align: center;
-  color: #f8f8f8;
+  #text-align: center;
+  #color: #f8f8f8;
   background: url(intro-bg.jpg) no-repeat center center;
   background-size: cover;
   height: 100%;
@@ -246,4 +246,12 @@ p.copyright {
 
 #calendar-icon{
   font-size:25px;
+}
+
+.custom-hover{
+  &:hover{
+    border-bottom: 2px solid #39C;
+    padding-bottom: 2px;
+    text-decoration: none;
+  }
 }
