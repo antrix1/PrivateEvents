@@ -1,0 +1,22 @@
+<% provide(:title, @user.name + "'s events") %>
+
+<% if @created_events.any? %>
+
+<h1 class="text-center">Created events:</h1>
+
+<%= render @created_events %>
+
+<%= will_paginate @created_events, class: "text-center" %><br/><br/>
+
+<% end %>
+
+
+<% if @attended_events.any? %>
+
+    <h1 class="text-center">Attended events:</h1>
+
+    <%= render @attended_events %>
+
+    <%= will_paginate @attended_events, class: "text-center" %><br/><br/>
+
+<% end %>

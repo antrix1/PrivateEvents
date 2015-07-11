@@ -21,13 +21,20 @@
         </li>
 
         <% if logged_in? %>
-        <li class="custom-hover">
-          <%= link_to new_event_path do %>
-            <i class="glyphicon glyphicon-edit"></i>
-              Create Event
-          <% end %>
-        </li>
-            <% end %>
+            <li class="custom-hover">
+              <%= link_to new_event_path do %>
+                  <i class="glyphicon glyphicon-edit"></i>
+                  Create Event
+              <% end %>
+            </li>
+
+            <li class="custom-hover">
+              <%= link_to events_path do %>
+                  <i class="glyphicon glyphicon-list"></i>
+                  <span class="network-name">Events</span>
+              <% end %>
+            </li>
+        <% end %>
 
         <li class="custom-hover">
           <%= link_to about_path do %>
@@ -63,14 +70,14 @@
                       <i class="glyphicon glyphicon-edit"></i>
                       Settings
                   <% end %>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to logout_path, method: "delete" do %>
-                    <i class="glyphicon glyphicon-log-out"></i>
-                      Log Out
-                  <% end %>
-                </li>
-              </ul>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to logout_path, method: "delete" do %>
+                        <i class="glyphicon glyphicon-log-out"></i>
+                        Log Out
+                    <% end %>
+                  </li>
+                  </ul>
             </li>
 
         <% end %>

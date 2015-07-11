@@ -14,6 +14,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def index
+    @events = Event.paginate(page: params[:page], per_page: 4)
+  end
+
   private
 
   def event_params

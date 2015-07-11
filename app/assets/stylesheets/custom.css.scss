@@ -8,6 +8,10 @@ html {
   height: 100%;
 }
 
+body{
+  background-color: rgb(238, 238, 238);
+}
+
 #wrap{
 min-height: 100%;
 height: auto;
@@ -251,6 +255,18 @@ p.copyright {
 .custom-hover{
   &:hover{
     border-bottom: 2px solid #39C;
+    padding-bottom: 2px;
+    text-decoration: none;
+  }
+}
+
+.border-blue{
+  border: 2px solid #39C;
+}
+
+.custom-hover2{
+  &:hover{
+    border-top: 4px solid #39C;
     padding-bottom: 2px;
     text-decoration: none;
   }
