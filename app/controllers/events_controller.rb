@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+
   def new
     @event = Event.new
   end
@@ -16,6 +18,37 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.paginate(page: params[:page], per_page: 4)
+  end
+
+  def show
+    @event = Event.find(params[:id])
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.update_attributes(event_params)
+    if @event.save
+      flash[:success] = "Update successful"
+      redirect_to @event
+    else
+      flash[:danger] = "Something went wrong"
+      render :edit
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if @event.destroy
+      flash[:success] = "Event deleted successfully"
+      redirect_to events_path
+    else
+      flash[:danger] = "Could not delete"
+      render @event
+    end
   end
 
   private

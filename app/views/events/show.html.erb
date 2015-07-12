@@ -1,0 +1,76 @@
+<% provide(:title, @event.name) %>
+
+<div class="row" style="margin-top: 20px;">
+  <div class="col-md-6 col-md-offset-1">
+    <div class="well border-blue" style="background: whitesmoke;">
+      <h4 class="text-center">
+        <%= link_to @event.name, event_path(@event), class: 'custom-hover2', style: 'text-decoration: none;color:black;' %>
+      </h4>
+      <hr style="width: 30%; border: 1px solid black; margin-top: -2px;"/>
+
+      <h4>
+        <%= @event.description %>
+      </h4>
+      <br/>
+      <h5 style="font-size:1.1em;">
+        <span class="glyphicon glyphicon-map-marker"></span>  <%= @event.location %>
+      </h5>
+
+
+      <h5 style="font-size:1.1em;">
+        <span class="glyphicon glyphicon-calendar"></span>  <%= @event.event_date.strftime("%d/%m/%Y") %>
+        at <%= @event.event_time.to_s[-13..-8] %>
+
+        <span class="pull-right">
+        Event by: <%= link_to @event.creator.name, user_path(@event.creator) %>
+      </span>
+      </h5>
+    </div>
+  </div>
+
+  <% if current_user != nil %>
+      <% if current_user == @event.creator %>
+          <div class="col-md-4 col-sm-12">
+            <%= link_to "Edit", edit_event_path(@event), class: 'btn btn-block btn-warning' %>
+          </div>
+          <br/><br/>
+
+          <div class="col-md-4 col-sm-12">
+            <%= link_to "Delete Event", @event, method: :delete, data: {confirm: true}, class: 'btn btn-block btn-danger' %>
+          </div>
+          <br/>
+      <% end %>
+
+      <% if current_user != @event.creator %>
+          <% if current_user.attended_events.include?(@event) %>
+
+              <div class="col-md-4 col-sm-12">
+                <%= link_to "Cancel Attendance", '#', class: 'btn btn-block btn-danger' %>
+              </div>
+
+
+          <% else %>
+              <div class="col-md-4 col-sm-12" >
+                <%= link_to "Attend", '#', class: 'btn btn-block btn-success', id:"attend-button" %>
+              </div>
+
+
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-1">
+    <h4>Users attending: </h4>
+    <ul class="list-group">
+      <% @event.attendees.each do |attendee| %>
+          <li class="list-group-item", style="text-decoration: none; width:40%">
+           <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            <%= link_to attendee.name, user_path(attendee), style: "font-size: 1.1em;" %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

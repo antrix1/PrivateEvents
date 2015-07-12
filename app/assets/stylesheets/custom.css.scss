@@ -271,3 +271,12 @@ p.copyright {
     text-decoration: none;
   }
 }
+
+#attend-button{
+  background-color: #39C;
+  border-color: #39C;
+  &:hover{
+    background:#2985B3;
+    border-color: #2985B3;
+  }
+}

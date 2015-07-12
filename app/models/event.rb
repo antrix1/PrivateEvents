@@ -4,8 +4,8 @@ class Event < ActiveRecord::Base
   # Associations
 
   belongs_to :creator, class_name: User
-  has_many :invitations, foreign_key: :event_id
-  has_many :attendees, through: :invitations, source: :attendee
+  has_many :invitations, foreign_key: :event_id, dependent: :destroy
+  has_many :attendees, through: :invitations, source: :attendee, dependent: :destroy
 
   ###################################
 
