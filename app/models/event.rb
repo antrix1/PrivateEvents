@@ -18,6 +18,10 @@ class Event < ActiveRecord::Base
   validate :event_date_check
 
 
+  default_scope -> {order('event_date asc')}
+  scope :upcoming_events, ->  { where('event_date > ?', Date.today)}
+  scope :past_events, -> { where('event_date < ?', Date.today)}
+
   def format_time
     date = Date.today
     self.event_time = self.event_time.to_datetime.change(day: date.day, month: date.month, year: date.year).to_time

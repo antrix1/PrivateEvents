@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_event, only: [:edit, :show, :update, :destroy]
+  before_action :logged_in_user, only: [:new, :create]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @event = Event.new
@@ -21,15 +23,12 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     @event.update_attributes(event_params)
     if @event.save
       flash[:success] = "Update successful"
@@ -41,7 +40,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     if @event.destroy
       flash[:success] = "Event deleted successfully"
       redirect_to events_path
@@ -51,21 +49,20 @@ class EventsController < ApplicationController
     end
   end
 
-  def attend
-    @event = Event.find(params[:id])
-    @invitation = current_user.invitations.build(event_id: @event.id)
-    if @invitation.save
-      flash[:success] = "You are now attending this event"
-      redirect_to @event
-    else
-      flash[:danger] = "Something went wrong"
-      render :show
-    end
-  end
-
   private
 
   def event_params
     params.require(:event).permit(:name, :description, :location, :event_date, :event_time)
+  end
+
+  def correct_user
+    if current_user != @event.creator
+      flash[:danger] = "You don't have permission to do that."
+      redirect_to root_url
+    end
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end

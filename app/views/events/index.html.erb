@@ -1,6 +1,34 @@
 <% provide(:title, "All Events") %>
-<h1 class="text-center">Events</h1><br/>
-<%= render @events %>
+<h1 class="text-center" id="page-heading">Upcoming Events</h1><br/>
 
-<%= will_paginate @events, class: 'text-center' %>
+
+<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+  <li class="active"><a href="#upcoming" data-toggle="tab">Upcoming events</a></li>
+  <li><a href="#past" data-toggle="tab">Past Events</a></li>
+</ul>
+
+<div id="my-tab-content" class="tab-content"><br/>
+
+  <div class="tab-pane active" id="upcoming">
+    <%= render @events.upcoming_events %>
+    <%= will_paginate @events.upcoming_events, class: 'text-center' %>
+  </div>
+
+  <div class="tab-pane" id="past">
+    <%= render @events.past_events %>
+    <%= will_paginate @events.past_events, class: 'text-center' %>
+  </div>
+</div>
+
 <br/><br/>
+
+
+<script type="text/javascript">
+    $('#tabs a:last').click(function(){
+       $('#page-heading').text("Past Events");
+    });
+
+    $('#tabs a:first').click(function(){
+        $('#page-heading').text("Upcoming Events");
+    });
+</script>

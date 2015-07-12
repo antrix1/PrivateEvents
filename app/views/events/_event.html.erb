@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="well border-blue" style="background: whitesmoke;">
-    <h4 class="text-center">
-      <%= link_to event.name, event_path(event), class: 'custom-hover2', style: 'text-decoration: none;color:black;' %>
-    </h4>
+      <h4 class="text-center">
+        <%= link_to event.name, event_path(event), class: 'custom-hover2', style: 'text-decoration: none;color:black;' %>
+      </h4>
       <hr style="width: 30%; border: 1px solid black; margin-top: -2px;"/>
 
       <h4>
@@ -15,7 +15,6 @@
       </h5>
 
 
-
       <h5 style="font-size:1.1em;">
         <span class="glyphicon glyphicon-calendar"></span>  <%= event.event_date.strftime("%d/%m/%Y") %>
         at <%= event.event_time.to_s[-13..-8] %>
@@ -23,7 +22,7 @@
         <span class="pull-right">
         Event by: <%= link_to event.creator.name, user_path(event.creator) %>
       </span>
-        </h5>
+      </h5>
     </div>
   </div>
 </div>
