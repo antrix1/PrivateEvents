@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   delete 'destroy_account' => 'users#destroy'
+
   resources :users
   resources :events
+  resources :invitations, only: [:create, :destroy]
 
 end

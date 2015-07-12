@@ -43,15 +43,17 @@
 
       <% if current_user != @event.creator %>
           <% if current_user.attended_events.include?(@event) %>
-
               <div class="col-md-4 col-sm-12">
-                <%= link_to "Cancel Attendance", '#', class: 'btn btn-block btn-danger' %>
+                <%= link_to "Cancel Attendance", current_user.invitations.find_by(event_id: @event.id), method: :delete, data:{confirm: "Are you sure?"}, class: 'btn btn-block btn-danger' %>
               </div>
 
-
           <% else %>
-              <div class="col-md-4 col-sm-12" >
-                <%= link_to "Attend", '#', class: 'btn btn-block btn-success', id:"attend-button" %>
+
+              <div class="col-md-4 col-sm-12">
+                <%= form_for(current_user.invitations.build(event_id: @event.id)) do |f| %>
+                    <%= f.hidden_field :event_id, value: @event.id %>
+                    <%= f.submit "Attend", class: 'btn btn-block btn-success', id:"attend-button" %>
+                <% end %>
               </div>
 
 
@@ -65,8 +67,8 @@
     <h4>Users attending: </h4>
     <ul class="list-group">
       <% @event.attendees.each do |attendee| %>
-          <li class="list-group-item", style="text-decoration: none; width:40%">
-           <span class="glyphicon glyphicon-circle-arrow-right"></span>
+          <li class="list-group-item" , style="text-decoration: none; width:60%">
+            <span class="glyphicon glyphicon-circle-arrow-right"></span>
             <%= link_to attendee.name, user_path(attendee), style: "font-size: 1.1em;" %>
           </li>
       <% end %>

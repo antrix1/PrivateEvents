@@ -51,6 +51,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def attend
+    @event = Event.find(params[:id])
+    @invitation = current_user.invitations.build(event_id: @event.id)
+    if @invitation.save
+      flash[:success] = "You are now attending this event"
+      redirect_to @event
+    else
+      flash[:danger] = "Something went wrong"
+      render :show
+    end
+  end
+
   private
 
   def event_params
